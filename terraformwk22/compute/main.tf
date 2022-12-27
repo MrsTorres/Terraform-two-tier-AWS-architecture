@@ -23,7 +23,7 @@ resource "aws_launch_template" "bastion_host_template" {
   }
 }
 
-resource "aws_autoscaling_group" "lu_bastion_host_asg" {
+resource "aws_autoscaling_group" "bastion_host_asg" {
   name                = "bastion-asg"
   vpc_zone_identifier = var.public_subnets
   desired_capacity    = 1
