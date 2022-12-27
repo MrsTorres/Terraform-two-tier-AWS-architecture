@@ -1,4 +1,4 @@
-# ---------root/main.tf
+# --root/main.tf
 
 module "networking" {
   source               = "./networking"
@@ -10,10 +10,10 @@ module "networking" {
   public_cidrs         = [for i in range(2, 7, 2) : cidrsubnet("172.33.0.0/16", 8, i)]
 }
 
-module "loadbalancing" {
-  source            = "./loadbalancing"
+module "load_balancer" {
+  source            = "./load_balancer"
   lb_sg             = module.networking.lb_sg
-  public_subnets    = module.networking.public_subnets
+  public_subnets    = module.networking.publicsub_1
   vpc_id            = module.networking.vpc_id
   tg_port           = 80
   tg_protocol       = "HTTP"
@@ -24,11 +24,11 @@ module "loadbalancing" {
 module "compute" {
   source          = "./compute"
   instance_type   = "t2.micro"
-  public_subnets  = module.networking.public_subnets
-  private_subnets = module.networking.private_subnets
-  webserver_sg    = module.networking.webserver_sg
+  public_subnets  = module.networking.publicsub_1
+  private_subnets = module.networking.privatesub_1
+  webserver_sg    = module.networking.private_sg
   bastion_host_sg = module.networking.bastion_host_sg
-  key_name        = "MazeKeys"
-  user_data       = filebase64("./userdata.sh")
-  lb_tg           = module.loadbalancing.lb_tg
+  key_name        = "mykeys"
+  user_data       = filebase64("./bootstrap.sh")
+  lb_tg           = module.load_balancer.lb_tg
 }

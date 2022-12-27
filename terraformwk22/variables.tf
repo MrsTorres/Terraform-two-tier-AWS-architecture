@@ -1,9 +1,16 @@
-# ----------- root/variables.tf
+# --root/variables.tf
+variable "region" {
+ default = ""
+}
 
-variable "region" {}
+variable "access_ip" {
+ default = ""
+}
 
-variable "access_ip" {}
+variable "access_key"{
+ default = ""
+}
 
-variable "access_key" {}
-
-variable "secret_key" {}
+variable "secret_key" {
+ default = ""
+}

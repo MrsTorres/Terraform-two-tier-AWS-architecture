@@ -1,9 +1,20 @@
+# terraform {
+#   backend "remote" {
+#     organization = "project-terraform"
+
+#     workspaces {
+#       name = "2Tier-dev"
+#     }
+#   }
+# }
+
 terraform {
-  backend "remote" {
-    organization = "project-terraform"
+  cloud {
+    organization = "terraformpract_22"
 
     workspaces {
-      name = "2Tier-dev"
+      name = "terraform_twotier"
     }
   }
 }
+

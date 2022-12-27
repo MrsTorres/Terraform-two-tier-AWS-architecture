@@ -1,6 +1,6 @@
 #!/bin/bash
-    yum update -y
-    yum install -y httpd
-    systemctl start httpd
-    systemctl enable httpd
-    echo "<h1>Terraform Modules:2-Tier</h1>" > var/www/html/index.html
+        yum update -y
+        yum install httpd -y
+        systemctl start httpd
+        systemctl enable httpd
+        echo "<html><body><h1>Hey there! Go refill your coffee. We have more to do!</h1></body></html>" > /var/www/html/index.html
