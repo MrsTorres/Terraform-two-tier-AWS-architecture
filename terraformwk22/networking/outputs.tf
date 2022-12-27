@@ -1,23 +1,23 @@
 # --- networking/outputs.tf ---
 
 output "vpc_id" {
-  value = aws_vpc.Week21_vpc.id
+  value = aws_vpc.Week22_vpc.id
 }
 
-output "public_subnets" {
-  value = aws_subnet.lu_public_subnets.*.id
+output "publicsub_1" {
+  value = aws_subnet.publicsub_1.*.id
 }
 
-output "private_subnets" {
-  value = aws_subnet.lu_private_subnets.*.id
+output "privatesub_1" {
+  value = aws_subnet.privatesub_1.*.id
 }
 
 output "bastion_host_sg" {
   value = aws_security_group.bastion_pub_sg.id
 }
 
-output "webserver_sg" {
-  value = aws_security_group.webserver_priv_sg.id
+output "private_sg" {
+  value = aws_security_group.private_sg.id
 }
 
 output "lb_sg" {
